@@ -1,4 +1,4 @@
-pragma solidity ^0.6.12;
+pragma solidity ^0.8.17;
 
 contract Startup{
 
@@ -13,7 +13,7 @@ User []use;
 
 
 function addIdea(int pnum, string memory Teamname,string memory description) public {
-	User memory e = User(pnum,eamname,description);
+	User memory e = User(pnum,Teamname,description);
 	use.push(e);
 }
 
