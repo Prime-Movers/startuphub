@@ -10,8 +10,8 @@ class patent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late String startupdescription;
-    late String startupname;
+    String startupdescription = '';
+    String startupname = '';
     return Scaffold(
       appBar: appBar(),
       drawer: drawer(),
