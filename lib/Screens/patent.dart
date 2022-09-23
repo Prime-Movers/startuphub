@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:startup_hub/Services/form.dart';
+import 'package:startup_hub/Screens/home.dart';
 import '../Widgets/widgets.dart';
 import '../Widgets/constants.dart';
 import '../Widgets/roundButton.dart';
 
-class patent extends StatelessWidget {
-  const patent({super.key});
-  static const String id = 'patent';
+class createjob extends StatelessWidget {
+  const createjob({super.key});
+  static const String id = 'createjob';
 
   @override
   Widget build(BuildContext context) {
-    String startupdescription = '';
-    String startupname = '';
+    String startupdescription = "";
+    String startupname = "";
     return Scaffold(
       appBar: appBar(),
-      drawer: drawer(),
+      drawer: apdrawer(),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Hub Patents',
-              style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 103, 35, 125)),
-            ),
             SizedBox(
               height: 30,
             ),
@@ -49,19 +42,23 @@ class patent extends StatelessWidget {
                 startupdescription = value;
               },
               decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter the Startup Description.'),
+                  hintText: 'Enter the  Description.'),
             ),
             SizedBox(
               height: 20,
             ),
             RoundButton(
-                color: Colors.lightBlueAccent,
-                title: 'post',
-                onPressed: () {
-                  formData()
-                      .addStartupContainer(startupname, startupdescription);
-                  Navigator.pop(context);
-                }),
+              color: Colors.lightBlueAccent,
+              title: 'Get patent',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => Home()),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

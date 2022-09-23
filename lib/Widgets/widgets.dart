@@ -1,82 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:startup_hub/Screens/home.dart';
-import 'package:startup_hub/Screens/patent.dart';
-import 'package:startup_hub/Screens/jobs.dart';
+import 'package:startup_hub/Screens/idea.dart';
+import 'package:startup_hub/Screens/openpatent.dart';
+import 'package:startup_hub/Screens/yourpatent.dart';
+import '../Screens/settings.dart';
 
-Widget drawer() {
-  return Drawer(
-    backgroundColor: Colors.white,
-    child: ListView(
-      children: [
-        DrawerHeader(
-          decoration: const BoxDecoration(
-            color: Colors.blue,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.blue,
-                  child: Icon(Icons.people),
-                  radius: 34,
-                ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text('Your Name',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 16)),
-                        SizedBox(height: 5),
-                      ],
-                    ),
+class apdrawer extends StatefulWidget {
+  const apdrawer({super.key});
+
+  @override
+  State<apdrawer> createState() => _apdrawerState();
+}
+
+class _apdrawerState extends State<apdrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      backgroundColor: Colors.white,
+      child: ListView(
+        children: [
+          DrawerHeader(
+            decoration: const BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.blue,
+                    child: Icon(Icons.people),
+                    radius: 34,
                   ),
-                ],
-              ),
-            ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text('Your Name',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16)),
+                          SizedBox(height: 5),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.account_circle,
-            color: Colors.blue,
+          ListTile(
+            leading: const Icon(
+              Icons.account_circle,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Your Account',
+              style: TextStyle(color: Colors.blue),
+            ),
+            onTap: () {},
           ),
-          title: const Text(
-            'Your Account',
-            style: TextStyle(color: Colors.blue),
+          ListTile(
+            leading: const Icon(
+              Icons.pattern,
+              color: Colors.blue,
+            ),
+            title: const Text(
+              'Your Patents',
+              style: TextStyle(color: Colors.blue),
+            ),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => yourpatent()))),
           ),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.pattern,
-            color: Colors.blue,
+          ListTile(
+            leading: const Icon(
+              Icons.settings,
+              color: Colors.orange,
+            ),
+            title: const Text(
+              'Settings',
+              style: TextStyle(color: Colors.orange),
+            ),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: ((context) => settings()))),
           ),
-          title: const Text(
-            'Your Patents',
-            style: TextStyle(color: Colors.blue),
-          ),
-          onTap: () {},
-        ),
-        ListTile(
-          leading: const Icon(
-            Icons.settings,
-            color: Colors.orange,
-          ),
-          title: const Text(
-            'Settings',
-            style: TextStyle(color: Colors.orange),
-          ),
-          onTap: () {},
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
 }
 
 PreferredSizeWidget appBar() {
@@ -131,13 +145,13 @@ class _barState extends State<bar> {
               Icons.pattern,
               color: Colors.blue,
             ),
-            label: 'patent'),
+            label: 'idea'),
         BottomNavigationBarItem(
             icon: Icon(
               Icons.business,
               color: Colors.blue,
             ),
-            label: 'jobs'),
+            label: 'patents'),
       ],
       currentIndex: _selectedIndex,
       selectedItemColor: Color.fromARGB(255, 62, 178, 255),

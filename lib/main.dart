@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:startup_hub/Screens/settings.dart';
 import 'Screens/welcomeScreen.dart';
 import 'Screens/registerScreen.dart';
 import 'Screens/loginScreen.dart';
 import 'Screens/home.dart';
-import 'Screens/patent.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'Screens/createjob.dart';
+import 'package:provider/provider.dart';
+import './Services/functions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Services(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

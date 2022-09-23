@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_hub/Screens/home.dart';
 import 'package:startup_hub/Services/form.dart';
 import '../Widgets/widgets.dart';
 import '../Widgets/constants.dart';
@@ -10,11 +11,11 @@ class createjob extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    late String startupdescription;
-    late String startupname;
+    String startupdescription = "";
+    String startupname = "";
     return Scaffold(
       appBar: appBar(),
-      drawer: drawer(),
+      drawer: apdrawer(),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: Column(
@@ -48,12 +49,18 @@ class createjob extends StatelessWidget {
               height: 20,
             ),
             RoundButton(
-                color: Colors.lightBlueAccent,
-                title: 'post your job',
-                onPressed: () {
-                  formData().addJobContainer(startupname, startupdescription);
-                  Navigator.pop(context);
-                }),
+              color: Colors.lightBlueAccent,
+              title: 'post your job',
+              onPressed: () {
+                formd().addJobContainer(startupname, startupdescription);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => Home()),
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

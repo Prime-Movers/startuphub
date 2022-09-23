@@ -1,10 +1,10 @@
-import 'package:startup_hub/Screens/patent.dart';
-
-import '../Widgets/constants.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../Widgets/widgets.dart';
-
-import '../Widgets/roundButton.dart';
+import '../Services/functions.dart';
+import '../Widgets/patentContainer.dart';
+import 'package:provider/provider.dart';
+import '../Services/functions.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,12 +14,40 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    titleController.dispose();
+    descriptionController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    var startupServices = context.watch<Services>();
     return Scaffold(
       appBar: appBar(),
-      drawer: drawer(),
-      body: Column(
+      drawer: apdrawer(),
+      body: startupServices.isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : RefreshIndicator(
+              onRefresh: () async {},
+              child: ListView.builder(
+                itemCount: startupServices.startups.length,
+                itemBuilder: (context, index) {
+                  return patentContainer(
+                    teamName: startupServices.startups[index].title.toString(),
+                    description:
+                        startupServices.startups[index].description.toString(),
+                  );
+                },
+              ),
+            ),
+      /* body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Padding(
@@ -32,7 +60,10 @@ class _HomeState extends State<Home> {
           ),
           Padding(
             padding: EdgeInsets.all(10),
-            child: Text('list of patents'),
+            child: patentContainer(
+              teamName: "Startup hub",
+              description: "This is impossible",
+            ),
           ),
           RoundButton(
               color: Colors.lightBlueAccent,
@@ -43,6 +74,8 @@ class _HomeState extends State<Home> {
               }),
         ],
       ),
+      
+    ); */
       bottomNavigationBar: bar(),
     );
   }
